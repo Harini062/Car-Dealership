@@ -40,6 +40,13 @@ img{
   margin:20px;
   padding:5px;
 }
+.center-image {
+    display: block;
+    margin: 30px auto;  
+    max-width: 100%;    
+    height: auto;
+    border-radius: 12px;  
+}
 
 .homepage_links{
   color:  rgb(97, 64, 128);
