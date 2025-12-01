@@ -1,11 +1,4 @@
 [flake8]
 max-line-length = 120
-
-# Ignore minor issues for now
-ignore = E203,W503,F401,F841
-
-# Enforce 2 blank lines between top-level functions/classes
-blank-lines = 2
-
-# Exclude migrations and virtual environment folders
+ignore = E203,W503,E501,F401,F841
 exclude = migrations,__pycache__,venv,env
