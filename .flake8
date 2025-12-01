@@ -1,20 +1,11 @@
 [flake8]
-# Maximum line length
 max-line-length = 120
 
-# Ignore some minor stylistic errors
-ignore = 
-    E203  # whitespace before ':'
-    W503  # line break before binary operator
-    F401  # imported but unused (temporary for CI)
-    F841  # local variable assigned but unused
+# Ignore minor issues for now
+ignore = E203,W503,F401,F841
 
 # Enforce 2 blank lines between top-level functions/classes
 blank-lines = 2
 
 # Exclude migrations and virtual environment folders
-exclude = 
-    migrations,
-    __pycache__,
-    venv,
-    env
+exclude = migrations,__pycache__,venv,env
