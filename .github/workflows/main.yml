@@ -11,7 +11,7 @@ jobs:
   lint_python:
     name: Lint Python Files
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -29,12 +29,12 @@ jobs:
       - name: Run Python Linter
         run: |
           flake8 .
-          echo "Linted all Python files successfully"
+          echo "Python linting completed"
 
   lint_js:
     name: Lint JavaScript/React Files
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -44,10 +44,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install ESLint
-        run: npm install -g eslint
+      - name: Install ESLint and React plugin
+        run: |
+          npm install -g eslint@8
+          npm install eslint eslint-plugin-react --save-dev
 
       - name: Run ESLint
         run: |
           npx eslint ./server/frontend/src --ext .js,.jsx
-          echo "Linted all JavaScript/React files successfully"
+          echo "JavaScript linting completed"
