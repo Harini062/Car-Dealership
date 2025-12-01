@@ -35,7 +35,7 @@ jobs:
           black .
 
   lint_js:
-    name: Lint JavaScript/React with JSHint
+    name: Lint & Auto-fix JavaScript/React
     runs-on: ubuntu-latest
 
     steps:
@@ -47,8 +47,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install JSHint
-        run: npm install -g jshint
+      - name: Install ESLint dependencies
+        run: |
+          npm install --save-dev eslint @babel/eslint-parser eslint-plugin-react
 
-      - name: Run JSHint
-        run: jshint ./server/frontend/src
+      - name: Run ESLint (Auto-fix)
+        run: npx eslint ./server/frontend/src --ext .js,.jsx --fix --config eslint.config.js
+
+      - name: Run ESLint (Check)
+        run: npx eslint ./server/frontend/src --ext .js,.jsx --config eslint.config.js
