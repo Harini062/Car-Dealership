@@ -28,36 +28,24 @@ logger = logging.getLogger(__name__)
 @csrf_exempt
 
 def login_user(request):
-    if request.method != 'POST':
-        return JsonResponse({"error": "POST request required"}, status=400)
-
-    try:
-        data = json.loads(request.body)
-        username = data.get('userName')
-        password = data.get('password')
-    except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
-
-    if not username or not password:
-        return JsonResponse({"error": "Username and password required"}, status=400)
-
-    user = authenticate(request, username=username, password=password)
-
+    # Get username and password from request.POST dictionary
+    data = json.loads(request.body)
+    username = data["userName"]
+    password = data["password"]
+    # Try to check if provide credential can be authenticated
+    user = authenticate(username=username, password=password)
+    data = {"userName": username}
     if user is not None:
+        # If user is valid, call login method to login current user
         login(request, user)
-        return JsonResponse({"userName": username, "status": "Authenticated"})
-    else:
-        return JsonResponse({"error": "Invalid credentials", "status": "Failed"}, status=401)
+        data = {"userName": username, "status": "Authenticated"}
+    return JsonResponse(data)
 
 
 def logout_user(request):
-    if request.method == "GET":
-        username = request.user.username if request.user.is_authenticated else ""
         logout(request)  # Terminate the user session
         data = {"userName": ""}  # Return empty username
         return JsonResponse(data)
-    else:
-        return JsonResponse({"error": "GET request required"}, status=400)
 
 # Create a `registration` view to handle sign up request
 @csrf_exempt

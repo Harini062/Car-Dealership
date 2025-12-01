@@ -69,9 +69,7 @@ const PostReview = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      if(dealerobjs.length > 0)
-        setDealer(dealerobjs[0])
+        setDealer(retobj.dealer);
     }
   }
 
@@ -81,8 +79,7 @@ const PostReview = () => {
     });
     const retobj = await res.json();
     
-    let carmodelsarr = Array.from(retobj.CarModels)
-    setCarmodels(carmodelsarr)
+    setCarmodels(retobj.CarModels);
   }
   useEffect(() => {
     get_dealer();
