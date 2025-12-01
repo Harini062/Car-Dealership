@@ -45,20 +45,7 @@ jobs:
           node-version: 18
 
       - name: Install ESLint
-        run: |
-          npm install -g eslint
-          npm install eslint --save-dev
-
-      - name: Initialize ESLint (if no config exists)
-        run: |
-          if [ ! -f .eslintrc.json ]; then
-            npx eslint --init <<EOF
-2
-1
-0
-0
-EOF
-          fi
+        run: npm install -g eslint
 
       - name: Run ESLint
         run: |
