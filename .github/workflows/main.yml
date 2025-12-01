@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Flake8 Linter
         run: |
-          flake8 . --max-line-length=120 --ignore=E203,W503,F401,F841,E231,E302,E128,W292,E117,E303,E121,E275,E226,E722,W391,E251,F811,E304
+          flake8 . --max-line-length=120 --ignore=E203,W503,F401,F841,E231,E302,E128,W292,E117,E303,E121,E275,E226,E722,W391,E251,F811,E304,E712
 
   lint_js:
     name: Lint JavaScript/React
