@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
-const  cors = require('cors')
-const app = express()
+const  cors = require('cors');
+const app = express();
 const port = 3030;
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 //app.use(require('body-parser').urlencoded({ extended: false }));
 
@@ -41,7 +41,7 @@ if (process.env.SEED_DB === "true") {
 
 // Express route to home
 app.get('/', async (req, res) => {
-    res.send("Welcome to the Mongoose API")
+    res.send("Welcome to the Mongoose API");
 });
 
 // Express route to fetch all reviews
@@ -101,7 +101,7 @@ app.get('/fetchDealer/:id', async (req, res) => {
 //Express route to insert review
 app.post('/insert_review', async (req, res) => {
   data = req.body;
-  const documents = await Reviews.find().sort( { id: -1 } )
+  const documents = await Reviews.find().sort( { id: -1 } );
   let new_id = documents[0]?.id + 1 || 1;
 
   const review = new Reviews({
